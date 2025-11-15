@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+CONTROL_PLANE_IP=$(kubectl get nodes cilium-control-plane -o=jsonpath='{.status.addresses[0].address}')
+
+if [[ -z "${CONTROL_PLANE_IP}" ]]; then
+  echo "Error: Could not detect control-plane ip address."
+  exit 1
+fi
+
+helm repo add cilium https://helm.cilium.io/
+helm upgrade --install cilium cilium/cilium --version 1.18.2 \
+  --namespace kube-system \
+  --set kubeProxyReplacement=true \
+  --set k8sServiceHost="${CONTROL_PLANE_IP}" \
+  --set k8sServicePort="6443"
