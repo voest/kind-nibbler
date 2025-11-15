@@ -8,7 +8,7 @@ if [[ -z "${CONTROL_PLANE_IP}" ]]; then
 fi
 
 helm repo add cilium https://helm.cilium.io/
-helm upgrade --install cilium cilium/cilium --version 1.18.2 \
+helm upgrade --install cilium cilium/cilium --version 1.18.4 \
   --namespace kube-system \
   --set kubeProxyReplacement=true \
   --set k8sServiceHost="${CONTROL_PLANE_IP}" \

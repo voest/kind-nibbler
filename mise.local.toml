@@ -13,4 +13,4 @@ run = "sudo kind create cluster --config kind.yaml"
 run = "sudo kind delete cluster --name cilium"
 
 [tools]
-cilium-cli = "0.18.7"
+cilium-cli = "0.18.8"
