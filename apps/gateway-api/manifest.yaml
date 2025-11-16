@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: &name gateway-example
+  labels:
+    kubernetes.io/metadata.name: *name
