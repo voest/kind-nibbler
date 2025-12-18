@@ -1,0 +1,15 @@
+[env]
+KIND_EXPERIMENTAL_PROVIDER = "nerdctl"
+KUBECONFIG = "{{env.HOME}}/.kube/clusters/nibbler"
+
+[tasks.install-cluster]
+run = "sudo -E kind create cluster --config kind.yaml"
+
+[tasks.uninstall-cluster]
+run = "sudo -E kind delete cluster --name nibbler"
+
+[tools]
+"ubi:komodorio/helm-dashboard" = "2.0.4"
+cilium-cli = "0.18.9"
+helm = "4.0.4"
+kind = "0.31.0"
