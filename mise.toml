@@ -9,7 +9,9 @@ run = "sudo -E kind create cluster --config kind.yaml"
 run = "sudo -E kind delete cluster --name nibbler"
 
 [tools]
+"ubi:controlplaneio-fluxcd/flux-operator" = { version = "0.37.1", matching = "operator_" }
 "ubi:komodorio/helm-dashboard" = "2.0.4"
 cilium-cli = "0.18.9"
+flux2 = "2.7.5"
 helm = "4.0.4"
 kind = "0.31.0"
