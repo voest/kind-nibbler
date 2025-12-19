@@ -5,3 +5,11 @@ helm upgrade --install cilium cilium/cilium \
   --version 1.18.5 \
   --namespace kube-system \
   --values clusters/nibbler/infra/cilium/values.yaml
+
+echo >&2
+echo "Waiting for Cilium to be ready:" >&2
+cilium status --wait
+
+echo >&2
+echo "Installing Gateway API:" >&2
+kubectl apply --server-side -f clusters/nibbler/infra/cilium/crd-gateway-api.yaml
