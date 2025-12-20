@@ -30,3 +30,9 @@ spec:
   storage:
     class: "standard"
     size: "1Gi"
+  sync:
+    kind: GitRepository
+    url: "ssh://andi@192.168.55.220/home/andi/k8s/kind-nibbler"
+    ref: "refs/heads/main"
+    path: "clusters/nibbler"
+    pullSecret: "flux-system"
