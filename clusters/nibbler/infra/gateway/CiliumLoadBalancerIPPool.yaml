@@ -3,7 +3,6 @@ apiVersion: "cilium.io/v2"
 kind: CiliumLoadBalancerIPPool
 metadata:
   name: "main-gateway-pool"
-  namespace: infra-gateway
 spec:
   blocks:
     # Configure unused IPs from the kind subnet on the host

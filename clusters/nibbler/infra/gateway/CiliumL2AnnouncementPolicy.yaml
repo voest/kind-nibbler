@@ -3,7 +3,6 @@ apiVersion: "cilium.io/v2alpha1"
 kind: CiliumL2AnnouncementPolicy
 metadata:
   name: "main-gateway-policy"
-  namespace: infra-gateway
 spec:
   nodeSelector:
     matchExpressions:
