@@ -1,0 +1,22 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: main-gateway
+  namespace: infra-gateway
+spec:
+  gatewayClassName: cilium
+  infrastructure:
+    annotations:
+      # See [CiliumLoadBalancerIPPool.yaml](CiliumLoadBalancerIPPool.yaml)
+      io.cilium/lb-ipam-ips: "10.4.1.241"
+  addresses:
+    - type: "IPAddress"
+      value: "10.4.1.241"
+  listeners:
+  - protocol: HTTP
+    port: 9090
+    name: http-gw
+    allowedRoutes:
+      namespaces:
+        from: All
