@@ -15,7 +15,7 @@ spec:
       value: "10.4.1.241"
   listeners:
   - protocol: HTTP
-    port: 9090
+    port: 80
     name: http-gw
     allowedRoutes:
       namespaces:
