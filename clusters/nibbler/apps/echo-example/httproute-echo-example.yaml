@@ -1,0 +1,36 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: http-echo
+  namespace: echo-example
+spec:
+  hostnames:
+  - echo-example
+  parentRefs:
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: main-gateway
+    namespace: infra-gateway
+  rules:
+  - filters:
+    - responseHeaderModifier:
+        add:
+        - name: Cache-Control
+          value: max-age=60, public
+        - name: X-Powered-By
+          value: Bash
+      type: ResponseHeaderModifier
+    matches:
+    - path:
+        type: PathPrefix
+        value: /
+  - backendRefs:
+    - name: echo-example-1
+      kind: Service
+      port: 8080
+      weight: 25
+    - name: echo-example-2
+      kind: Service
+      port: 8090
+      weight: 75
