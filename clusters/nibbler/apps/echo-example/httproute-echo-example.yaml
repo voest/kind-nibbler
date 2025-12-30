@@ -7,6 +7,7 @@ metadata:
 spec:
   hostnames:
   - echo-example
+  - echo-example.nibbler.dahaegga.com
   parentRefs:
   - group: gateway.networking.k8s.io
     kind: Gateway
