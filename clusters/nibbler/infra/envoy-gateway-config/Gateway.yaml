@@ -1,0 +1,24 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: envoy-gateway
+  namespace: envoy-gateway-system
+spec:
+  gatewayClassName: envoy-gateway
+  infrastructure:
+    annotations:
+      # See [CiliumLoadBalancerIPPool.yaml](CiliumLoadBalancerIPPool.yaml)
+      io.cilium/lb-ipam-ips: "10.4.1.225"
+    parametersRef:
+      # Required for CiliumL2AnnouncementPolicy
+      group: gateway.envoyproxy.io
+      kind: EnvoyProxy
+      name: envoy-gateway-system-ds
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 80
+      allowedRoutes:
+        namespaces:
+          from: All

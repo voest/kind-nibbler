@@ -1,0 +1,25 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  # Required for CiliumL2AnnouncementPolicy
+  # See https://github.com/envoyproxy/gateway/issues/3093
+  # See https://github.com/envoyproxy/gateway/pull/3092
+  # See https://github.com/envoyproxy/gateway/blob/main/test/e2e/testdata/envoyproxy-daemonset.yaml
+  name: envoy-gateway-system-ds
+  namespace: envoy-gateway-system
+spec:
+  ipFamily: IPv4
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyDaemonSet:
+        patch:
+          type: StrategicMerge
+          value:
+            spec:
+              template:
+                spec:
+                  containers:
+                    - name: envoy
+                      readinessProbe:
+                        initialDelaySeconds: 5

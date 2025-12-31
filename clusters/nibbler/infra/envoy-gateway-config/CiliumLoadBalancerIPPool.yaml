@@ -1,0 +1,10 @@
+---
+apiVersion: "cilium.io/v2"
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: "envoy-gateway-pool"
+spec:
+  blocks:
+    # Configure unused IPs from the kind subnet on the host
+    # Check with: `nerdctl network inspect kind`
+    - cidr: "10.4.1.224/28"
