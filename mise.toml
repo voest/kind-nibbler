@@ -19,6 +19,7 @@ confirm = "⚠️ This will remove your cluster. Continue?"
 
 [tools]
 "ubi:controlplaneio-fluxcd/flux-operator" = { version = "0.37.1", matching = "operator_" }
+"ubi:envoyproxy/gateway" = { version = "1.6.1", matching = "egctl", exe = "egctl" }
 "ubi:komodorio/helm-dashboard" = "2.0.4"
 cilium-cli = "0.18.9"
 flux2 = "2.7.5"
