@@ -1,0 +1,30 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: http-echo
+  namespace: echo-envoy-gateway
+spec:
+  hostnames:
+    - echo-envoy-gateway
+  parentRefs:
+    - name: envoy-gateway
+      namespace: envoy-gateway-system
+      group: gateway.networking.k8s.io
+      kind: Gateway
+  rules:
+    - backendRefs:
+        - group: ""
+          name: echo-envoy-gateway-1
+          kind: Service
+          port: 5090
+          weight: 75
+        - group: ""
+          name: echo-envoy-gateway-2
+          kind: Service
+          port: 6090
+          weight: 25
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
