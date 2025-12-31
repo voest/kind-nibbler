@@ -18,4 +18,3 @@ spec:
       instance: "echo-envoy-gateway-2"
       replicas: "2"
       port: "6090"
-

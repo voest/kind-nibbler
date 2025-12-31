@@ -6,32 +6,32 @@ metadata:
   namespace: echo-example
 spec:
   hostnames:
-  - echo-example
-  - echo-example.nibbler.dahaegga.com
+    - echo-example
+    - echo-example.nibbler.dahaegga.com
   parentRefs:
-  - group: gateway.networking.k8s.io
-    kind: Gateway
-    name: main-gateway
-    namespace: infra-gateway
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: main-gateway
+      namespace: infra-gateway
   rules:
-  - filters:
-    - responseHeaderModifier:
-        add:
-        - name: Cache-Control
-          value: max-age=60, public
-        - name: X-Powered-By
-          value: Bash
-      type: ResponseHeaderModifier
-    matches:
-    - path:
-        type: PathPrefix
-        value: /
-  - backendRefs:
-    - name: echo-example-1
-      kind: Service
-      port: 8080
-      weight: 25
-    - name: echo-example-2
-      kind: Service
-      port: 8090
-      weight: 75
+    - filters:
+        - responseHeaderModifier:
+            add:
+              - name: Cache-Control
+                value: max-age=60, public
+              - name: X-Powered-By
+                value: Bash
+          type: ResponseHeaderModifier
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
+    - backendRefs:
+        - name: echo-example-1
+          kind: Service
+          port: 8080
+          weight: 25
+        - name: echo-example-2
+          kind: Service
+          port: 8090
+          weight: 75
