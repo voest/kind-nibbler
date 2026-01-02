@@ -1,0 +1,23 @@
+---
+apiVersion: redis.redis.opstreelabs.in/v1beta2
+kind: Redis
+metadata:
+  # This instance is non-persistent.
+  # Add `redis.spec.storage` to be persistent.
+  name: redis-standalone
+  namespace: redis-example
+spec:
+  kubernetesConfig:
+    image: quay.io/opstree/redis:v8.4.0
+    resources:
+      requests:
+        cpu: 100m
+        memory: 32Mi
+      limits:
+        cpu: 200m
+        memory: 96Mi
+  redisConfig:
+    additionalRedisConfig: redis-standalone-config
+  podSecurityContext:
+    runAsUser: 1000
+    fsGroup: 1000
