@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: redis-operator
-      version: ${quote:="}${chartVersion:=0.22.2}${quote:="}
+      version: 0.22.2
       sourceRef:
         kind: HelmRepository
         name: redis-operator
