@@ -1,0 +1,33 @@
+---
+apiVersion: redis.redis.opstreelabs.in/v1beta2
+kind: Redis
+metadata:
+  # This instance is non-persistent.
+  # Add `redis.spec.storage` to be persistent.
+  name: redis-ratelimit
+  namespace: envoy-gateway-system
+spec:
+  kubernetesConfig:
+    image: quay.io/opstree/redis:v8.4.0
+    resources:
+      requests:
+        cpu: 100m
+        memory: 32Mi
+      limits:
+        cpu: 200m
+        memory: 96Mi
+  redisConfig:
+    additionalRedisConfig: redis-ratelimit-config
+  podSecurityContext:
+    runAsUser: 1000
+    fsGroup: 1000
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-ratelimit-config
+  namespace: envoy-gateway-system
+data:
+  redis-additional.conf: |
+    maxmemory 32mb
+    maxmemory-policy allkeys-lru
