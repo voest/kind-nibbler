@@ -1,1 +1,3 @@
+ignore*.yaml
+ignore*.yml
 mise.local.toml

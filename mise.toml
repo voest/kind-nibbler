@@ -22,6 +22,7 @@ confirm = "⚠️ This will remove your cluster. Continue?"
 "ubi:envoyproxy/gateway" = { version = "1.6.1", matching = "egctl", exe = "egctl" }
 "ubi:komodorio/helm-dashboard" = "2.0.4"
 cilium-cli = "0.18.9"
+cmctl = "2.4.0"
 flux2 = "2.7.5"
 helm = "4.0.4"
 kind = "0.31.0"

@@ -6,7 +6,7 @@ metadata:
   namespace: echo-envoy-gateway
 spec:
   hostnames:
-    - echo-envoy-gateway
+    - echo.envoy.cluster.local
   parentRefs:
     - name: envoy-gateway
       namespace: envoy-gateway-system

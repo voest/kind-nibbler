@@ -4,6 +4,10 @@ kind: Gateway
 metadata:
   name: envoy-gateway
   namespace: envoy-gateway-system
+  annotations:
+    cert-manager.io/cluster-issuer: nibbler
+    cert-manager.io/private-key-algorithm: ECDSA
+    cert-manager.io/private-key-size: "384"
 spec:
   gatewayClassName: envoy-gateway
   infrastructure:
@@ -22,3 +26,14 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
+    - name: https
+      hostname: "*.envoy.nibbler.dahaegga.com"
+      port: 443
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: https-wildcard-cert
