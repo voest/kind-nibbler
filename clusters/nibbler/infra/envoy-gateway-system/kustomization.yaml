@@ -3,9 +3,9 @@ kind: Kustomization
 namespace: envoy-gateway-system
 resources:
   - namespace.yaml
-  - redis-ratelimit.yaml
-  - ociepository.yaml
-  - helmrelease.yaml
+  - config-redis.yaml
+  - app-redis.yaml
+  - app-envoy-gateway-system.yaml
 configMapGenerator:
   - name: envoy-gateway-values
     files:
