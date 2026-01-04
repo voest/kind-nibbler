@@ -1,0 +1,19 @@
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: ClientTrafficPolicy
+metadata:
+  name: retro-server-header
+  namespace: envoy-gateway-system
+spec:
+  targetSelectors:
+    - kind: HTTPRoute
+      matchLabels:
+        envoy-gateway-policy: retro-server-header
+  headers:
+    lateResponseHeaders:
+      add:
+        - name: "x-custom-header"
+          value: "true"
+      set:
+        - name: "server"
+          value: "Microsoft-IIS/8.0"
