@@ -11,8 +11,8 @@ spec:
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
-      name: main-gateway
-      namespace: infra-gateway
+      name: cilium-gateway
+      namespace: cilium-gateway-system
   rules:
     - filters:
         - responseHeaderModifier:

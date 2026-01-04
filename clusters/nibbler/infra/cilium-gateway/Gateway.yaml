@@ -2,8 +2,8 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: main-gateway
-  namespace: infra-gateway
+  name: cilium-gateway
+  namespace: cilium-gateway-system
 spec:
   gatewayClassName: cilium
   infrastructure:

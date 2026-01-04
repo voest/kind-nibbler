@@ -2,7 +2,7 @@
 apiVersion: "cilium.io/v2"
 kind: CiliumLoadBalancerIPPool
 metadata:
-  name: "main-gateway-pool"
+  name: "cilium-gateway-pool"
 spec:
   blocks:
     # Configure unused IPs from the kind subnet on the host
