@@ -19,9 +19,9 @@ spec:
     - source-controller
     - kustomize-controller
     - helm-controller
-    - notification-controller
-    - image-reflector-controller
-    - image-automation-controller
+    # - notification-controller
+    # - image-reflector-controller
+    # - image-automation-controller
   cluster:
     type: kubernetes
     size: small
