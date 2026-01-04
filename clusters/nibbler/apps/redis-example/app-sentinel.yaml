@@ -1,0 +1,21 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: redis-example-sentinel
+  namespace: flux-system
+spec:
+  interval: 15m
+  targetNamespace: redis-example
+  dependsOn:
+    - name: redis-operator
+      namespace: flux-system
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  path: "/apps/redis-sentinel"
+  prune: true
+  postBuild:
+    substitute:
+      instance: "replica"

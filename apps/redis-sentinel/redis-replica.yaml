@@ -2,10 +2,9 @@
 apiVersion: redis.redis.opstreelabs.in/v1beta2
 kind: RedisReplication
 metadata:
-  name: redis-replica
-  namespace: redis-example
+  name: redis-${instance}
 spec:
-  clusterSize: 3
+  clusterSize: 2
   podSecurityContext:
     runAsUser: 1000
     fsGroup: 1000

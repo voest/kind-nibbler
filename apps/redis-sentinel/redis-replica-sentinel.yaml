@@ -2,10 +2,9 @@
 apiVersion: redis.redis.opstreelabs.in/v1beta2
 kind: RedisSentinel
 metadata:
-  name: redis-replica
-  namespace: redis-example
+  name: redis-${instance}
 spec:
-  clusterSize: 2
+  clusterSize: 3
   podSecurityContext:
     runAsUser: 1000
     fsGroup: 1000
@@ -21,8 +20,8 @@ spec:
     # 6. Fail: redis master service has no Endpoints to select
     #
     # See https://github.com/OT-CONTAINER-KIT/redis-operator/issues/1544
-    redisReplicationName: redis-replica
-    masterGroupName: redis-replica
+    redisReplicationName: redis-${instance}
+    masterGroupName: redis-${instance}
     downAfterMilliseconds: "1000"
     failoverTimeout: "3000"
   kubernetesConfig:

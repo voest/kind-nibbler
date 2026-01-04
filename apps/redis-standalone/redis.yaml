@@ -4,8 +4,7 @@ kind: Redis
 metadata:
   # This instance is non-persistent.
   # Add `redis.spec.storage` to be persistent.
-  name: redis-standalone
-  namespace: redis-example
+  name: redis-${instance}
 spec:
   kubernetesConfig:
     image: quay.io/opstree/redis:v8.4.0
@@ -17,7 +16,7 @@ spec:
         cpu: 200m
         memory: 96Mi
   redisConfig:
-    additionalRedisConfig: redis-standalone-config
+    additionalRedisConfig: redis-${instance}-config
   podSecurityContext:
     runAsUser: 1000
     fsGroup: 1000
