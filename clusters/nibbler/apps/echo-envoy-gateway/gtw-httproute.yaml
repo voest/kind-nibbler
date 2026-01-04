@@ -13,18 +13,23 @@ spec:
       group: gateway.networking.k8s.io
       kind: Gateway
   rules:
-    - backendRefs:
-        - group: ""
-          name: echo-envoy-gateway-1
-          kind: Service
-          port: 5090
-          weight: 75
-        - group: ""
-          name: echo-envoy-gateway-2
-          kind: Service
-          port: 6090
-          weight: 25
-      matches:
+    - matches:
         - path:
             type: PathPrefix
             value: /
+      backendRefs:
+        - name: echo-envoy-gateway-1
+          kind: Service
+          port: 5090
+          weight: 75
+        - name: echo-envoy-gateway-2
+          kind: Service
+          port: 6090
+          weight: 25
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /gw2
+      backendRefs:
+        - name: echo-envoy-gateway-2
+          port: 6090
