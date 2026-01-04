@@ -2,7 +2,7 @@
 apiVersion: redis.redis.opstreelabs.in/v1beta2
 kind: RedisSentinel
 metadata:
-  name:  redis-replica
+  name: redis-replica
   namespace: redis-example
 spec:
   clusterSize: 2
@@ -11,7 +11,7 @@ spec:
     fsGroup: 1000
   redisSentinelConfig:
     # Could not perform a stable failover.
-    # 
+    #
     # Steps to reproduce:
     # 1. Delete master pod
     # 2. Watch sentinel service logs
@@ -21,7 +21,7 @@ spec:
     # 6. Fail: redis master service has no Endpoints to select
     #
     # See https://github.com/OT-CONTAINER-KIT/redis-operator/issues/1544
-    redisReplicationName : redis-replica
+    redisReplicationName: redis-replica
     masterGroupName: redis-replica
     downAfterMilliseconds: "1000"
     failoverTimeout: "3000"

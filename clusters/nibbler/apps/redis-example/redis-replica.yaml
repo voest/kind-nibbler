@@ -2,7 +2,7 @@
 apiVersion: redis.redis.opstreelabs.in/v1beta2
 kind: RedisReplication
 metadata:
-  name:  redis-replica
+  name: redis-replica
   namespace: redis-example
 spec:
   clusterSize: 3
