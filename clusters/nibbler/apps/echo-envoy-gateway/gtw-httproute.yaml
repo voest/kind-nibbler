@@ -4,6 +4,8 @@ kind: HTTPRoute
 metadata:
   name: http-echo
   namespace: echo-envoy-gateway
+  labels:
+    envoy-gateway-policy: retro-server-header
 spec:
   hostnames:
     - echo-envoy-gateway
