@@ -2,7 +2,7 @@
 apiVersion: "cilium.io/v2alpha1"
 kind: CiliumL2AnnouncementPolicy
 metadata:
-  name: "envoy-gateway-policy"
+  name: envoy-gateway-${instance}-policy
 spec:
   nodeSelector:
     matchExpressions:

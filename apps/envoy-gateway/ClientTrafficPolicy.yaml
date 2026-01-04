@@ -2,15 +2,14 @@
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: ClientTrafficPolicy
 metadata:
-  name: global-defaults
-  namespace: envoy-gateway-system
+  name: ${instance}-global-defaults
 spec:
   # [TargetSelector](https://gateway.envoyproxy.io/v1.6/api/extension_types/#targetselector) did
   # not work for me. Configured in the same and the `envoy-gateway-system` namespace.
   targetRefs:
     - kind: Gateway
       group: gateway.networking.k8s.io
-      name: envoy-gateway
+      name: envoy-gateway-${instance}
   # Custom headers
   headers:
     lateResponseHeaders:

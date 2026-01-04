@@ -5,8 +5,7 @@ metadata:
   # See https://github.com/envoyproxy/gateway/issues/3093
   # See https://github.com/envoyproxy/gateway/pull/3092
   # See https://github.com/envoyproxy/gateway/blob/main/test/e2e/testdata/envoyproxy-daemonset.yaml
-  name: envoy-gateway-system-ds
-  namespace: envoy-gateway-system
+  name: envoy-gateway-${instance}-ds
 spec:
   ipFamily: IPv4
   provider:

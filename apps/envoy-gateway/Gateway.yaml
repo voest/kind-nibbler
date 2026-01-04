@@ -2,33 +2,32 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: envoy-gateway
-  namespace: envoy-gateway-system
+  name: envoy-gateway-${instance}
   annotations:
-    cert-manager.io/cluster-issuer: nibbler
+    cert-manager.io/cluster-issuer: ${clusterIssuer}
     cert-manager.io/private-key-algorithm: ECDSA
     cert-manager.io/private-key-size: "384"
 spec:
-  gatewayClassName: envoy-gateway
+  gatewayClassName: envoy-gateway-${instance}
   infrastructure:
     annotations:
       # See [CiliumLoadBalancerIPPool.yaml](CiliumLoadBalancerIPPool.yaml)
-      io.cilium/lb-ipam-ips: "10.4.1.225"
+      io.cilium/lb-ipam-ips: ${ipamIP}
     parametersRef:
       # Required for CiliumL2AnnouncementPolicy
       group: gateway.envoyproxy.io
       kind: EnvoyProxy
-      name: envoy-gateway-system-ds
+      name: envoy-gateway-${instance}-ds
   listeners:
     - name: http
-      hostname: "*.envoy.nibbler.dahaegga.com"
+      hostname: "*.${wildcardHostname}"
       protocol: HTTP
       port: 80
       allowedRoutes:
         namespaces:
           from: Same
     - name: https
-      hostname: "*.envoy.nibbler.dahaegga.com"
+      hostname: "*.${wildcardHostname}"
       protocol: HTTPS
       port: 443
       allowedRoutes:
@@ -37,4 +36,4 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-          - name: https-wildcard-cert
+          - name: envoy-gateway-${instance}-tls-cert

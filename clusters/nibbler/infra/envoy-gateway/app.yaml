@@ -1,0 +1,28 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: envoy-gateway-main
+  namespace: flux-system
+spec:
+  interval: 15m
+  targetNamespace: envoy-gateway-system
+  dependsOn:
+    - name: envoy-gateway-system
+      namespace: envoy-gateway-system
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  path: "/apps/envoy-gateway"
+  prune: true
+  postBuild:
+    substitute:
+      instance: "main"
+      # Move to cm
+      cidrIPPool: "10.4.1.224/28"
+      ipamIP: "10.4.1.225"
+      clusterIssuer: "nibbler"
+      # Flux could not replace `*`
+      # See https://github.com/fluxcd/kustomize-controller/issues/1107
+      wildcardHostname: "envoy.nibbler.dahaegga.com"
