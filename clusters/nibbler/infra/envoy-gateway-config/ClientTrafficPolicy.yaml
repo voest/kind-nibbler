@@ -2,7 +2,7 @@
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: ClientTrafficPolicy
 metadata:
-  name: retro-server-header
+  name: global-defaults
   namespace: envoy-gateway-system
 spec:
   # [TargetSelector](https://gateway.envoyproxy.io/v1.6/api/extension_types/#targetselector) did
@@ -11,6 +11,7 @@ spec:
     - kind: Gateway
       group: gateway.networking.k8s.io
       name: envoy-gateway
+  # Custom headers
   headers:
     lateResponseHeaders:
       add:
@@ -19,3 +20,8 @@ spec:
       set:
         - name: "server"
           value: "Microsoft-IIS/8.0"
+  # Enable HTTP/3
+  # Not sure if this is working. Tested with `curl --http3(-only)`.
+  # Got a `alt-svc: h3=":443"; ma=86400` response header
+  # See https://github.com/envoyproxy/gateway/issues/5005
+  http3: {}
