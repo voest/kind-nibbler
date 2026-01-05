@@ -3,4 +3,5 @@ kind: Kustomization
 components:
   - echo-cilium-gtw
   - echo-envoy-gtw
+  - envoy-gateway
   - flux-web-ui-gtw

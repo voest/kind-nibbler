@@ -20,14 +20,16 @@ spec:
       name: envoy-gateway-${instance}-ds
   listeners:
     - name: http
-      hostname: "*.${wildcardHostname}"
+      # Flux could not replace variable starting with `*`.
+      # See https://github.com/fluxcd/kustomize-controller/issues/1107
+      hostname: "*.${wildcardHostname:=envoy.cluster.local}"
       protocol: HTTP
       port: 80
       allowedRoutes:
         namespaces:
           from: Same
     - name: https
-      hostname: "*.${wildcardHostname}"
+      hostname: "*.${wildcardHostname:=envoy.cluster.local}"
       protocol: HTTPS
       port: 443
       allowedRoutes:

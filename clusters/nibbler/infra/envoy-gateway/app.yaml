@@ -23,6 +23,7 @@ spec:
       cidrIPPool: "10.4.1.224/28"
       ipamIP: "10.4.1.225"
       clusterIssuer: "nibbler"
-      # Flux could not replace `*`
-      # See https://github.com/fluxcd/kustomize-controller/issues/1107
-      wildcardHostname: "envoy.nibbler.dahaegga.com"
+    substituteFrom:
+      - kind: ConfigMap
+        name: custom-vars-envoy-gateway
+        optional: true
