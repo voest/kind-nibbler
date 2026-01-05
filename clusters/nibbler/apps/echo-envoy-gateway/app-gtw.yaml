@@ -16,3 +16,10 @@ spec:
     namespace: flux-system
   path: "/apps/echo-gtw"
   prune: true
+  postBuild:
+    substitute:
+      var_substitution_enabled: "true"
+    substituteFrom:
+      - kind: ConfigMap
+        name: custom-vars-echo-envoy-gtw
+        optional: true

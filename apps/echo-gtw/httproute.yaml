@@ -5,7 +5,7 @@ metadata:
   name: http-echo
 spec:
   hostnames:
-    - echo.envoy.cluster.local
+    - ${hostname:=echo-example.envoy.cluster.local}
   parentRefs:
     - name: envoy-gateway
       namespace: envoy-gateway-system
