@@ -3,7 +3,7 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: http-echo
-  namespace: echo-example
+  namespace: echo-cilium-gatway
 spec:
   hostnames:
     - echo-example
@@ -27,11 +27,11 @@ spec:
             type: PathPrefix
             value: /
     - backendRefs:
-        - name: echo-example-1
+        - name: echo-cilium-gateway-1
           kind: Service
           port: 8080
           weight: 25
-        - name: echo-example-2
+        - name: echo-cilium-gateway-2
           kind: Service
           port: 8090
           weight: 75

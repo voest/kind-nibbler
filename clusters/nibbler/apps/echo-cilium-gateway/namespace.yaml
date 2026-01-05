@@ -2,4 +2,4 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: echo-example
+  name: echo-cilium-gatway

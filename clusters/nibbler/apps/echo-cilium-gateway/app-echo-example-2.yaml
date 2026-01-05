@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: echo-example-1
+  name: echo-cilium-gateway-2
   namespace: flux-system
 spec:
   interval: 15m
-  targetNamespace: echo-example
+  targetNamespace: echo-cilium-gatway
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -15,4 +15,6 @@ spec:
   prune: true
   postBuild:
     substitute:
-      instance: "echo-example-1"
+      instance: "echo-cilium-gateway-2"
+      replicas: "3"
+      port: "8090"
