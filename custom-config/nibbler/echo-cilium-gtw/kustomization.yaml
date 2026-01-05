@@ -1,0 +1,12 @@
+---
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+namespace: kube-system
+configMapGenerator:
+  - name: custom-vars-echo-cilium-gtw
+    envs:
+      - values.env
+    options:
+      disableNameSuffixHash: true
+      labels:
+        reconcile.fluxcd.io/watch: Enabled
