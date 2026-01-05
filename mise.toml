@@ -1,21 +1,25 @@
 [env]
+CLUSTER = "nibbler"
 KIND_EXPERIMENTAL_PROVIDER = "nerdctl"
-KUBECONFIG = "{{env.HOME}}/.kube/clusters/nibbler"
+KUBECONFIG = "{{env.HOME}}/.kube/clusters/{{env.CLUSTER}}"
+
+[hooks]
+enter = 'echo "☸️ Active cluster: $CLUSTER"'
 
 [tasks.install-cluster]
 run = [
   { task = "install-kind" },
   { task = "install-cilium" },
   { task = "install-flux" },
-  "echo '🏁 cluster installed.'",
+  'echo "🏁 cluster $CLUSTER installed."',
 ]
 
 [tasks.install-kind]
-run = "sudo -E kind create cluster --config kind.yaml"
+run = "sudo -E kind create cluster --config kind/{{env.CLUSTER}}.yaml"
 
 [tasks.uninstall-cluster]
-run = "sudo -E kind delete cluster --name nibbler"
-confirm = "⚠️ This will remove your cluster. Continue?"
+run = "sudo -E kind delete cluster --name {{env.CLUSTER}}"
+confirm = "⚠️ This will remove your {{env.CLUSTER}} cluster. Continue?"
 
 [tools]
 "ubi:controlplaneio-fluxcd/flux-operator" = { version = "0.37.1", matching = "operator_" }
