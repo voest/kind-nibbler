@@ -28,6 +28,6 @@ l2announcements:
 # Observability
 hubble:
   relay:
-    enabled: true
+    enabled: false
   ui:
-    enabled: true
+    enabled: false
