@@ -7,7 +7,7 @@ spec:
   hostnames:
     - ${hostname:=echo-example.envoy.cluster.local}
   parentRefs:
-    - name: envoy-gateway
+    - name: envoy-gateway-main
       namespace: envoy-gateway-system
       group: gateway.networking.k8s.io
       kind: Gateway
