@@ -5,10 +5,10 @@ metadata:
   name: http-echo
 spec:
   hostnames:
-    - ${hostname:=echo-example.envoy.cluster.local}
+    - ${hostname:=echo-example.cluster.local}
   parentRefs:
-    - name: envoy-gateway-main
-      namespace: envoy-gateway-system
+    - name: ${gateway:=envoy-gateway-main}
+      namespace: ${gatewayNamespace:=envoy-gateway-system}
       group: gateway.networking.k8s.io
       kind: Gateway
   rules:
@@ -17,18 +17,18 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: echo-envoy-gateway-1
+        - name: ${servicePrefix:=echo-envoy-gateway}-1
           kind: Service
-          port: 5090
-          weight: 75
-        - name: echo-envoy-gateway-2
+          port: ${servicePort1:=5090}
+          weight: ${serviceWeight1:=75}
+        - name: ${servicePrefix:=echo-envoy-gateway}-2
           kind: Service
-          port: 6090
-          weight: 25
+          port: ${servicePort2:=6090}
+          weight: ${serviceWeight2:=25}
     - matches:
         - path:
             type: PathPrefix
             value: /gw2
       backendRefs:
-        - name: echo-envoy-gateway-2
-          port: 6090
+        - name: ${servicePrefix:=echo-envoy-gateway}-2
+          port: ${servicePort2:=6090}

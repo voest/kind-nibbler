@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 15m
-  targetNamespace: echo-cilium-gatway
+  targetNamespace: echo-cilium-gateway
   sourceRef:
     kind: GitRepository
     name: flux-system

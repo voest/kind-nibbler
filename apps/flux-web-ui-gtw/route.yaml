@@ -5,7 +5,7 @@ metadata:
   name: flux-operator-web-ui
 spec:
   hostnames:
-    - flux.envoy.nibbler.dahaegga.com
+    - ${hostname:=flux.envoy.cluster.local}
   parentRefs:
     - name: envoy-gateway-main
       namespace: envoy-gateway-system
