@@ -7,9 +7,6 @@ metadata:
 spec:
   interval: 15m
   targetNamespace: echo-envoy-gateway
-  dependsOn:
-    - name: envoy-gateway-system
-      namespace: envoy-gateway-system
   sourceRef:
     kind: GitRepository
     name: flux-system

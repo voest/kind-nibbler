@@ -2,19 +2,17 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: echo-envoy-gateway-1
+  name: echo-envoy-gtw
   namespace: flux-system
 spec:
   interval: 15m
   targetNamespace: echo-envoy-gateway
+  dependsOn:
+    - name: envoy-gateway-system
+      namespace: envoy-gateway-system
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  path: "/apps/echo"
+  path: "/apps/echo-gtw"
   prune: true
-  postBuild:
-    substitute:
-      instance: "echo-envoy-gateway-1"
-      replicas: "2"
-      port: "5090"
