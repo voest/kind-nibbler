@@ -1,0 +1,31 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cloudflare-api-token
+  namespace: cert-manager-system
+type: Opaque
+stringData:
+  # https://cert-manager.io/docs/configuration/acme/dns01/cloudflare/
+  api-token: [TOKEN]
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: nibbler
+  namespace: cert-manager-system
+spec:
+  # https://cert-manager.io/docs/configuration/acme/
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    profile: shortlived
+    email: [EMAIL]
+    privateKeySecretRef:
+      name: nibbler-acme-account
+    solvers:
+    - dns01:
+        cloudflare:
+          email: [EMAIL]
+          apiTokenSecretRef:
+            name: cloudflare-api-token
+            key: api-token
