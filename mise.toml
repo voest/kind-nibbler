@@ -7,6 +7,9 @@ KUBECONFIG = "{{env.HOME}}/.kube/clusters/{{env.CLUSTER}}"
 [hooks]
 enter = 'echo "☸️ Active cluster: $CLUSTER"'
 
+[tasks.apply-custom-config]
+run = "kubectl apply -k custom-config/{{env.CLUSTER}}"
+
 [tasks.install-cluster]
 run = [
   "touch {{env.KUBECONFIG}}",
