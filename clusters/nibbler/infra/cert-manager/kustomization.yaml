@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: cert-manager-system
 resources:
   - namespace.yaml
-  - app.yaml
+  - flux-ks.yaml
 configMapGenerator:
   - name: cert-manager-values
     files:
