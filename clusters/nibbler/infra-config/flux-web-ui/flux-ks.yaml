@@ -8,13 +8,13 @@ spec:
   interval: 15m
   targetNamespace: flux-system
   dependsOn:
-    - name: envoy-gateway-system
-      namespace: envoy-gateway-system
+    - name: envoy-gateway-main
+      namespace: flux-system
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  path: "/apps/flux-web-ui-gtw"
+  path: "/infra/configs/flux-web-ui"
   prune: true
   postBuild:
     substitute:
