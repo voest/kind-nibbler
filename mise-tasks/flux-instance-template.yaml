@@ -32,7 +32,7 @@ spec:
     size: "1Gi"
   sync:
     kind: GitRepository
-    url: "ssh://andi@192.168.55.220/home/andi/k8s/kind-nibbler"
+    url: "${GIT_REPO_URL}"
     ref: "refs/heads/main"
     path: "clusters/nibbler"
     pullSecret: "flux-system"

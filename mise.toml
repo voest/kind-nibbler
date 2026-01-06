@@ -1,5 +1,6 @@
 [env]
 CLUSTER = "nibbler"
+GIT_REPO_URL = { required = true }
 KIND_EXPERIMENTAL_PROVIDER = "nerdctl"
 KUBECONFIG = "{{env.HOME}}/.kube/clusters/{{env.CLUSTER}}"
 
@@ -8,10 +9,12 @@ enter = 'echo "☸️ Active cluster: $CLUSTER"'
 
 [tasks.install-cluster]
 run = [
+  "touch {{env.KUBECONFIG}}",
   { task = "install-kind" },
   { task = "install-cilium" },
-  { task = "install-flux" },
-  'echo "🏁 cluster $CLUSTER installed."',
+  { task = "install-flux-operator" },
+  'echo "✅ cluster $CLUSTER installed."',
+  "echo \"🔧 Run the 'connect-flux-repo' task to finish cluster setup.\"",
 ]
 
 [tasks.install-kind]

@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+if [[ -z "${GIT_REPO_URL}" ]]; then
+  echo "Error: GIT_REPO_URL environment variable not set." >&2
+  echo >&2
+  echo "Please provie a local or remote URL." >&2
+  echo "See https://fluxoperator.dev/docs/instance/sync/" >&2
+  exit 1
+fi
+
+echo "🔧 Setup Flux Cluster Sync Configuration for ${GIT_REPO_URL}" >&2
+echo
+echo "🔑 Creating new 'flux-system' secret" >&2
+flux create secret git flux-system --url "${GIT_REPO_URL}"
+
+echo "🔽 Getting public key" >&2
+FLUX_PUB_KEY=$(kubectl get secret flux-system -o go-template='{{ index .data "identity.pub" | base64decode }}')
+
+echo "📝 Generating 'FluxInstance' manifest from 'flux-instance-template.yaml'" >&2
+MANIFEST=$(cat "${MISE_TASK_DIR}/flux-instance-template.yaml" | flux envsubst --strict)
+
+echo "🔼 Applying manifest" >&2
+# kubectl -n flux-system delete fluxinstances/flux
+echo "${MANIFEST}" | kubectl apply -f -
+
+echo >&2
+echo "✅ Check the status with:" >&2
+echo >&2
+echo "  kubectl get kustomizations -A -w" >&2
+echo "  kubectl -n flux-system port-forward svc/flux-operator 9080:9080" >&2
+echo "  xdg-open localhost:9080" >&2
+echo >&2
+
+echo "🔐 Please add the public key to your repository:" >&2
+echo >&2
+echo "  ${FLUX_PUB_KEY} flux-system@kind-${CLUSTER}" >&2
