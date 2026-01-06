@@ -14,8 +14,9 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  path: "/apps/envoy-gateway"
+  path: "/infra/configs/envoy-gateway"
   prune: true
+  wait: true
   postBuild:
     substitute:
       instance: "main"
