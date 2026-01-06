@@ -4,8 +4,8 @@ namespace: envoy-gateway-system
 resources:
   - namespace.yaml
   - config-redis.yaml
-  - app-redis.yaml
-  - app-envoy-gateway-system.yaml
+  - flux-ks-redis.yaml
+  - flux-ks-envoy-gateway.yaml
 configMapGenerator:
   - name: envoy-gateway-values
     files:
