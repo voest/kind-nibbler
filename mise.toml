@@ -8,7 +8,10 @@ KUBECONFIG = "{{env.HOME}}/.kube/clusters/{{env.CLUSTER}}"
 enter = 'echo "☸️ Active cluster: $CLUSTER"'
 
 [tasks.apply-custom-config]
-run = "kubectl apply -k custom-config/{{env.CLUSTER}}"
+run = [
+  "kubectl apply -k custom-config/{{env.CLUSTER}}",
+  "kubectl apply -f custom-config/{{env.CLUSTER}}/ignore-*.yaml",
+]
 
 [tasks.install-cluster]
 run = [
