@@ -16,7 +16,7 @@ echo "🔑 Creating new 'flux-system' secret" >&2
 flux create secret git flux-system --url "${GIT_REPO_URL}"
 
 echo "🔽 Getting public key" >&2
-FLUX_PUB_KEY=$(kubectl get secret flux-system -o go-template='{{ index .data "identity.pub" | base64decode }}')
+FLUX_PUB_KEY=$(kubectl -n flux-system get secret flux-system -o go-template='{{ index .data "identity.pub" | base64decode }}')
 
 echo "📝 Generating 'FluxInstance' manifest from 'flux-instance-template.yaml'" >&2
 MANIFEST=$(cat "${MISE_TASK_DIR}/flux-instance-template.yaml" | flux envsubst --strict)
