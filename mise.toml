@@ -34,8 +34,8 @@ confirm = "⚠️ This will remove your {{env.CLUSTER}} cluster. Continue?"
 "ubi:controlplaneio-fluxcd/flux-operator" = { version = "0.37.1", matching = "operator_" }
 "ubi:envoyproxy/gateway" = { version = "1.6.1", matching = "egctl", exe = "egctl" }
 "ubi:komodorio/helm-dashboard" = "2.0.4"
-cilium-cli = "0.18.9"
+cilium-cli = "0.19.2"
 cmctl = "2.4.0"
-flux2 = "2.7.5"
-helm = "4.0.4"
+flux2 = "2.8.1"
+helm = "4.1.1"
 kind = "0.31.0"

@@ -2,7 +2,7 @@
 
 helm repo add --force-update cilium https://helm.cilium.io/
 helm upgrade --install cilium cilium/cilium \
-  --version 1.18.5 \
+  --version 1.19.1 \
   --namespace kube-system \
   --values clusters/nibbler/infra/controllers/cilium/values.yaml
 
