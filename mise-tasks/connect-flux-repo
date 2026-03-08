@@ -30,7 +30,7 @@ echo "✅ Check the status with:" >&2
 echo >&2
 echo "  kubectl get kustomizations -A -w" >&2
 echo "  kubectl -n flux-system port-forward svc/flux-operator 9080:9080" >&2
-echo "  xdg-open localhost:9080" >&2
+echo "  xdg-open http://localhost:9080" >&2
 echo >&2
 
 echo "🔐 Please add the public key to your repository:" >&2

@@ -4,7 +4,7 @@ helm repo add --force-update cilium https://helm.cilium.io/
 helm upgrade --install cilium cilium/cilium \
   --version 1.19.1 \
   --namespace kube-system \
-  --values clusters/nibbler/infra/controllers/cilium/values.yaml
+  --values "clusters/${CLUSTER}/infra/controllers/cilium/values.yaml"
 
 echo >&2
 echo "Waiting for Cilium to be ready:" >&2
@@ -12,4 +12,4 @@ cilium status --wait
 
 echo >&2
 echo "Installing Gateway API:" >&2
-kubectl apply --server-side -f clusters/nibbler/infra/controllers/cilium/crd-gateway-api.yaml
+kubectl apply --server-side -f infra/controllers/gateway-api/crd-gateway-api.yaml

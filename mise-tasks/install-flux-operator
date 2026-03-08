@@ -10,4 +10,4 @@ kubectl apply -f clusters/nibbler/infra/configs/flux/
 echo "Check the status with:" >&2
 echo >&2
 echo "  kubectl -n flux-system port-forward svc/flux-operator 9080:9080" >&2
-echo "  xdg-open localhost:9080" >&2
+echo "  xdg-open http://localhost:9080" >&2
