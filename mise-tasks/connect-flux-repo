@@ -5,7 +5,7 @@ set -eo pipefail
 if [[ -z "${GIT_REPO_URL}" ]]; then
   echo "Error: GIT_REPO_URL environment variable not set." >&2
   echo >&2
-  echo "Please provie a local or remote URL." >&2
+  echo "Please provide a local or remote URL." >&2
   echo "See https://fluxoperator.dev/docs/instance/sync/" >&2
   exit 1
 fi
