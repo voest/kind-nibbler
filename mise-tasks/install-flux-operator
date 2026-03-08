@@ -5,7 +5,7 @@ helm upgrade --install flux-operator oci://ghcr.io/controlplaneio-fluxcd/charts/
   --create-namespace \
   --wait
 
-kubectl apply -f clusters/nibbler/infra/configs/flux/
+kubectl apply -f "clusters/${CLUSTER}/infra/configs/flux/"
 
 echo "Check the status with:" >&2
 echo >&2

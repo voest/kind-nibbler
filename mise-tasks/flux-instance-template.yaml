@@ -34,5 +34,5 @@ spec:
     kind: GitRepository
     url: "${GIT_REPO_URL}"
     ref: "refs/heads/main"
-    path: "clusters/nibbler"
+    path: "clusters/${CLUSTER}"
     pullSecret: "flux-system"
