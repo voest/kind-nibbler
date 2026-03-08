@@ -1,4 +1,4 @@
-ignore*.yaml
-ignore*.yml
+custom-config/*/manifests/*.yaml
+custom-config/*/manifests/*.yml
 mise.local.toml
 values.env

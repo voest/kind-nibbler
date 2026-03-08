@@ -11,8 +11,8 @@ enter = 'echo "☸️ Active cluster: $CLUSTER"'
 
 [tasks.apply-custom-config]
 run = [
-  "kubectl apply -k custom-config/{{env.CLUSTER}}",
-  "kubectl apply -f custom-config/{{env.CLUSTER}}/ignore-*.yaml",
+  "kubectl apply -k custom-config/{{env.CLUSTER}}/kustomize",
+  "kubectl apply -f custom-config/{{env.CLUSTER}}/manifests",
 ]
 
 [tasks.install-cluster]
