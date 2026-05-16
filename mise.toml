@@ -33,12 +33,12 @@ run = "{{env.KIND_COMMAND}} delete cluster --name {{env.CLUSTER}}"
 confirm = "⚠️ This will remove your {{env.CLUSTER}} cluster. Continue?"
 
 [tools]
-"ubi:controlplaneio-fluxcd/flux-operator" = { version = "0.37.1", matching = "operator_" }
-"ubi:envoyproxy/gateway" = { version = "1.6.1", matching = "egctl", exe = "egctl" }
-"ubi:komodorio/helm-dashboard" = "2.0.4"
+"ubi:controlplaneio-fluxcd/flux-operator" = { version = "0.49.0", matching = "operator_" }
+"ubi:envoyproxy/gateway" = { version = "1.8.0", matching = "egctl", exe = "egctl" }
+"ubi:komodorio/helm-dashboard" = "2.1.1"
 cilium-cli = "0.19.2"
-cilium-hubble = "1.18.6"
-cmctl = "2.4.0"
-flux2 = "2.8.1"
-helm = "4.1.1"
+cilium-hubble = "1.19.3"
+cmctl = "2.5.0"
+flux2 = "2.8.7"
+helm = "4.2.0"
 kind = "0.31.0"

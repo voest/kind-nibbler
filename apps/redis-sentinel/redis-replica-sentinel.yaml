@@ -25,7 +25,7 @@ spec:
     downAfterMilliseconds: "1000"
     failoverTimeout: "3000"
   kubernetesConfig:
-    image: quay.io/opstree/redis-sentinel:v8.4.2
+    image: quay.io/opstree/redis-sentinel:v8.6.2
     resources:
       requests:
         cpu: 100m

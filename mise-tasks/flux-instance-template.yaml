@@ -13,7 +13,7 @@ spec:
     labels:
       app.kubernetes.io/name: flux
   distribution:
-    version: "2.8.1"
+    version: "2.8.7"
     registry: "ghcr.io/fluxcd"
   components:
     - source-controller
