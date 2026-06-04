@@ -15,3 +15,8 @@ spec:
     mode: enabled
   interval: 15m
   timeout: 5m
+  values:
+    alertmanager:
+      enabled: false
+    kubeProxy:
+      enabled: false
