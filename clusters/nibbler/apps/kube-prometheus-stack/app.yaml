@@ -13,3 +13,6 @@ spec:
     namespace: flux-system
   path: "/apps/kube-prometheus-stack"
   prune: true
+  postBuild:
+    substitute:
+      chartVersion: "86.1.1"
