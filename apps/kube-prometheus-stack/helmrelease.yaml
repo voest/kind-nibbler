@@ -1,0 +1,17 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+spec:
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: ${chartVersion:="86.1.1"}
+      sourceRef:
+        kind: HelmRepository
+        name: kube-prometheus-stack
+  driftDetection:
+    mode: enabled
+  interval: 15m
+  timeout: 5m
