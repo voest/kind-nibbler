@@ -15,4 +15,4 @@ spec:
   prune: true
   postBuild:
     substitute:
-      chartVersion: "86.1.1"
+      chartVersion: "86.2.0"
