@@ -4,6 +4,19 @@ name: nibbler
 nodes:
   - role: control-plane
     image: &image kindest/node:v1.35.5@sha256:ce977ae6d65918d0b58a5f8b5e940429c2ce42fa3a5619ec2bbc60b949c0ac95
+    kubeadmConfigPatches:
+      - |
+        kind: ClusterConfiguration
+        controllerManager:
+          extraArgs:
+            bind-address: "0.0.0.0"
+        scheduler:
+          extraArgs:
+            bind-address: "0.0.0.0"
+        etcd:
+          local:
+            extraArgs:
+              listen-metrics-urls: "http://0.0.0.0:2381"
   - role: worker
     image: *image
   - role: worker
