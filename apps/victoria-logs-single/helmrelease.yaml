@@ -22,10 +22,19 @@ spec:
       valuesKey: values-vls.yaml
       optional: true
   values:
+    dashboards:
+      enabled: true
+      namespace: observability
+      labels:
+        grafana_dashboard: "1"
     server:
       persistentVolume:
         size: 1Gi
       retentionPeriod: 7d
+      serviceMonitor:
+        enabled: true
+        extraLabels:
+          release: kube-prometheus-stack
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -53,3 +62,7 @@ spec:
     excludeFilter: kubernetes.pod_namespace:in(observability,kube-system)
     remoteWrite:
       - url: http://victoria-logs-single-server:9428
+    podMonitor:
+      enabled: true
+      extraLabels:
+        release: kube-prometheus-stack
