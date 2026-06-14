@@ -1,0 +1,58 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: victoria-metrics-stack
+spec:
+  chart:
+    spec:
+      chart: victoria-metrics-k8s-stack
+      version: "0.83.0"
+      # version: ${chartVersion}
+      sourceRef:
+        kind: HelmRepository
+        name: victoria-metrics
+  driftDetection:
+    mode: enabled
+  interval: 15m
+  timeout: 5m
+  values:
+    fullnameOverride: "vmstack"
+    alertmanager:
+      enabled: false
+    kubeProxy:
+      enabled: false
+    vmalert:
+      enabled: false
+    victoria-metrics-operator:
+      enabled: false
+    kubeControllerManager:
+      vmScrape:
+        spec:
+          endpoints:
+          - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+            port: http-metrics
+            scheme: https
+            tlsConfig:
+              insecureSkipVerify: true
+              serverName: localhost
+    kubeEtcd:
+      service:
+          port: 2381
+          targetPort: 2381
+      vmScrape:
+        spec:
+          endpoints:
+            - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+              port: http-metrics
+              scheme: http
+    kubeScheduler:
+      vmScrape:
+        spec:
+          endpoints:
+          - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+            port: http-metrics
+            scheme: https
+            tlsConfig:
+              insecureSkipVerify: true
+              serverName: 127.0.0.1
