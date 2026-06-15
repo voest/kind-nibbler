@@ -26,21 +26,6 @@ l2announcements:
   enabled: true
 
 # Observability
-prometheus:
-  enabled: true
-  serviceMonitor:
-    enabled: true
-    labels:
-      release: kube-prometheus-stack
-operator:
-  prometheus:
-    enabled: true
-    serviceMonitor:
-      enabled: true
-      labels:
-        release: kube-prometheus-stack
-
-# Hubble
 hubble:
   relay:
     enabled: false
