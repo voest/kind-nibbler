@@ -24,7 +24,7 @@ spec:
   values:
     dashboards:
       enabled: true
-      namespace: observability
+      # namespace: observability
       labels:
         grafana_dashboard: "1"
     server:
