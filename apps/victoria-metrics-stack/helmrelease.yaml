@@ -20,6 +20,10 @@ spec:
     fullnameOverride: "vmstack"
     alertmanager:
       enabled: false
+    grafana:
+      sidecar:
+        dashboards:
+          searchNamespace: ALL
     kubeProxy:
       enabled: false
     vmalert:
