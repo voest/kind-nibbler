@@ -1048,7 +1048,7 @@ data:
 kind: ConfigMap
 metadata:
   name: cilium-operator-dashboard
-  namespace: observability
+  namespace: kube-system
   labels:
     app.kubernetes.io/name: cilium-operator-dashboard
     grafana_dashboard: "1"
