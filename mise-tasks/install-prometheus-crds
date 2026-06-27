@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo "Installing Prometheus Operator CRDs:" >&2
+helm repo add --force-update prometheus https://prometheus-community.github.io/helm-charts
+helm upgrade --install prometheus-operator-crds prometheus/prometheus-operator-crds \
+  --version ^29 \
+  --namespace kube-system \

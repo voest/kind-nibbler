@@ -19,6 +19,7 @@ run = [
 run = [
   "touch {{env.KUBECONFIG}}",
   { task = "install-kind" },
+  { task = "install-prometheus-crds" },
   { task = "install-cilium" },
   { task = "install-flux-operator" },
   'echo "✅ cluster $CLUSTER installed."',
