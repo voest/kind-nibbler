@@ -13,3 +13,7 @@ cilium status --wait
 echo >&2
 echo "Installing Gateway API:" >&2
 kubectl apply --server-side -f infra/controllers/gateway-api/crd-gateway-api.yaml
+
+echo "Hacky deleting ValidatingAdmissionPolicy components:" >&2
+kubectl delete validatingadmissionpolicy.admissionregistration.k8s.io/safe-upgrades.gateway.networking.k8s.io
+kubectl delete validatingadmissionpolicybinding.admissionregistration.k8s.io/safe-upgrades.gateway.networking.k8s.io
