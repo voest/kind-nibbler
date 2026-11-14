@@ -15,4 +15,4 @@ spec:
   prune: true
   postBuild:
     substitute:
-      chartVersion: "3.13.0"
+      chartVersion: "3.14.0"
