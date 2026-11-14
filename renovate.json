@@ -3,6 +3,9 @@
   "extends": [
     "config:recommended"
   ],
+  "github-actions": {
+    "enabled": false
+  },
   "flux": {
     "managerFilePatterns": [
       "/(?:^|/)(?:apps|infra|clusters)/.+\\.ya?ml$/"
