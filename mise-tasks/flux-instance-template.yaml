@@ -13,7 +13,7 @@ spec:
     labels:
       app.kubernetes.io/name: flux
   distribution:
-    version: "2.9.4"
+    version: "2.10.0"
     registry: "ghcr.io/fluxcd"
   components:
     - source-controller
@@ -33,6 +33,6 @@ spec:
   sync:
     kind: GitRepository
     url: "${GIT_REPO_URL}"
-    ref: "refs/heads/main"
+    ref: "refs/heads/prometheus"
     path: "clusters/${CLUSTER}"
     pullSecret: "flux-system"
