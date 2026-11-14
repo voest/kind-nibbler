@@ -1,0 +1,124 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "flux": {
+    "managerFilePatterns": [
+      "/(?:^|/)(?:apps|infra|clusters)/.+\\.ya?ml$/"
+    ]
+  },
+  "kubernetes": {
+    "managerFilePatterns": [
+      "/(?:^|/)(?:apps|infra|clusters)/.+\\.ya?ml$/"
+    ]
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update kind node image in kind cluster configs",
+      "managerFilePatterns": [
+        "/^kind/.+\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "image:\\s*(?:&\\S+\\s+)?(?<depName>kindest/node):(?<currentValue>v[^@\\s]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?"
+      ],
+      "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "description": "Update Redis container images in Redis Operator CRDs",
+      "managerFilePatterns": [
+        "/^apps/redis-.+/.*\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "image:\\s*(?<depName>quay\\.io/opstree/redis(?:-sentinel)?):(?<currentValue>v[0-9.]+)"
+      ],
+      "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "description": "Update Cilium Helm chart version in bootstrap task",
+      "managerFilePatterns": [
+        "/^mise-tasks/install-cilium$/"
+      ],
+      "matchStrings": [
+        "helm upgrade --install cilium cilium/cilium \\\\\\s+--version (?<currentValue>[0-9.]+)"
+      ],
+      "depNameTemplate": "cilium",
+      "datasourceTemplate": "helm",
+      "registryUrlTemplate": "https://helm.cilium.io/"
+    },
+    {
+      "customType": "regex",
+      "description": "Update prometheus-operator-crds Helm chart version in bootstrap task",
+      "managerFilePatterns": [
+        "/^mise-tasks/install-prometheus-crds$/"
+      ],
+      "matchStrings": [
+        "helm upgrade --install prometheus-operator-crds prometheus/prometheus-operator-crds \\\\\\s+--version (?<currentValue>\\^?[0-9.]+)"
+      ],
+      "depNameTemplate": "prometheus-operator-crds",
+      "datasourceTemplate": "helm",
+      "registryUrlTemplate": "https://prometheus-community.github.io/helm-charts"
+    },
+    {
+      "customType": "regex",
+      "description": "Update Flux distribution version in FluxInstance template",
+      "managerFilePatterns": [
+        "/^mise-tasks/flux-instance-template\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "distribution:\\s+version:\\s*\"(?<currentValue>[0-9.]+)\""
+      ],
+      "depNameTemplate": "fluxcd/flux2",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^v(?<version>.*)$"
+    },
+    {
+      "customType": "regex",
+      "description": "Track Gateway API CRD bundle version",
+      "managerFilePatterns": [
+        "/^infra/controllers/gateway-api/crd-gateway-api\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "gateway\\.networking\\.k8s\\.io/bundle-version:\\s*(?<currentValue>v[0-9.]+)"
+      ],
+      "depNameTemplate": "kubernetes-sigs/gateway-api",
+      "datasourceTemplate": "github-releases"
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "Pin redis-operator to <=0.24.0",
+      "matchPackageNames": [
+        "redis-operator"
+      ],
+      "allowedVersions": "<=0.24.0"
+    },
+    {
+      "description": "Group Cilium chart updates across Flux and bootstrap task",
+      "groupName": "cilium",
+      "matchPackageNames": [
+        "cilium",
+        "cilium/cilium"
+      ]
+    },
+    {
+      "description": "Group Flux CLI and FluxInstance distribution updates",
+      "groupName": "flux2",
+      "matchPackageNames": [
+        "flux2",
+        "fluxcd/flux2"
+      ]
+    },
+    {
+      "description": "Group Envoy Gateway CLI and Helm chart updates",
+      "groupName": "envoy-gateway",
+      "matchPackageNames": [
+        "envoyproxy/gateway",
+        "docker.io/envoyproxy/gateway-helm"
+      ]
+    }
+  ]
+}
