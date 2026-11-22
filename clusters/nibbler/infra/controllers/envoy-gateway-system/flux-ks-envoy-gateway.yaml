@@ -8,7 +8,7 @@ spec:
   interval: 15m
   targetNamespace: envoy-gateway-system
   dependsOn:
-    - name: redis-operator
+    - name: envoy-gateway-valkey-ratelimit
       namespace: flux-system
   sourceRef:
     kind: GitRepository

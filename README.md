@@ -9,7 +9,7 @@ You can use this repository to create preconfigured GitOps Kubernetes clusters. 
 - [Flux CD](https://fluxcd.io/)
 - [Envoy Gateway](https://gateway.envoyproxy.io/)
 - [Metrics Server](https://github.com/kubernetes-sigs/metrics-server)
-- [Redis Operator](https://github.com/OT-CONTAINER-KIT/redis-operator)
+- [Valkey](https://valkey.io/)
 - [cert-manager](https://cert-manager.io/)
 - [kube-bench](https://github.com/aquasecurity/kube-bench)
 

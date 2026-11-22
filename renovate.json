@@ -30,17 +30,6 @@
     },
     {
       "customType": "regex",
-      "description": "Update Redis container images in Redis Operator CRDs",
-      "managerFilePatterns": [
-        "/^apps/redis-.+/.*\\.ya?ml$/"
-      ],
-      "matchStrings": [
-        "image:\\s*(?<depName>quay\\.io/opstree/redis(?:-sentinel)?):(?<currentValue>v[0-9.]+)"
-      ],
-      "datasourceTemplate": "docker"
-    },
-    {
-      "customType": "regex",
       "description": "Update Cilium Helm chart version in bootstrap task",
       "managerFilePatterns": [
         "/^mise-tasks/install-cilium$/"
@@ -92,13 +81,6 @@
     }
   ],
   "packageRules": [
-    {
-      "description": "Pin redis-operator to <=0.24.0",
-      "matchPackageNames": [
-        "redis-operator"
-      ],
-      "allowedVersions": "<=0.24.0"
-    },
     {
       "description": "Group Cilium chart updates across Flux and bootstrap task",
       "groupName": "cilium",

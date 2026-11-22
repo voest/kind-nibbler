@@ -3,8 +3,7 @@ kind: Kustomization
 namespace: envoy-gateway-system
 resources:
   - namespace.yaml
-  - config-redis.yaml
-  - flux-ks-redis.yaml
+  - flux-ks-valkey.yaml
   - flux-ks-envoy-gateway.yaml
 configMapGenerator:
   - name: envoy-gateway-values

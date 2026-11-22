@@ -1,0 +1,37 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: valkey-${instance}
+spec:
+  chart:
+    spec:
+      chart: valkey
+      version: "1.0.0"
+      sourceRef:
+        kind: HelmRepository
+        name: valkey
+  driftDetection:
+    mode: enabled
+  interval: 15m
+  timeout: 5m
+  values:
+    fullnameOverride: valkey-${instance}
+    persistence:
+      enabled: true
+      size: 100Mi
+    replica:
+      enabled: true
+      replicas: 2
+    sentinel:
+      enabled: true
+      password: "valkey-sentinel-example"
+      downAfterMilliseconds: 1000
+      failoverTimeout: 3000
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 200m
+        memory: 256Mi

@@ -5,6 +5,6 @@ config:
       backend:
         type: Redis
         redis:
-          url: "redis-ratelimit.envoy-gateway-system.svc:6379"
+          url: "valkey-ratelimit.envoy-gateway-system.svc:6379"
 deployment:
   replicas: 2
