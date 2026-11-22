@@ -57,6 +57,20 @@ spec:
       enabled: false
     vmalert:
       enabled: false
+    vlsingle:
+      enabled: true
+      spec:
+        retentionPeriod: "7d"
+        storage:
+          resources:
+            requests:
+              storage: 1Gi
+    vlagent:
+      enabled: true
+      spec:
+        k8sCollector:
+          enabled: true
+          excludeFilter: "kubernetes.pod_namespace:in(observability,kube-system)"
     victoria-metrics-operator:
       enabled: false
     kubeControllerManager:
