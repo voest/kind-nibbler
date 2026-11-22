@@ -56,7 +56,10 @@ spec:
     kubeProxy:
       enabled: false
     vmalert:
-      enabled: false
+      enabled: true
+      spec:
+        extraArgs:
+          notifier.blackhole: "true"
     vlsingle:
       enabled: true
       spec:
