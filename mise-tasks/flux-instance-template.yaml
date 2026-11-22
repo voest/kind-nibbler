@@ -33,6 +33,6 @@ spec:
   sync:
     kind: GitRepository
     url: "${GIT_REPO_URL}"
-    ref: "refs/heads/prometheus"
+    ref: "refs/heads/update-versions"
     path: "clusters/${CLUSTER}"
     pullSecret: "flux-system"
