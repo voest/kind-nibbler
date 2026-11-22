@@ -10,7 +10,7 @@ spec:
       version: "1.0.0"
       sourceRef:
         kind: HelmRepository
-        name: valkey
+        name: valkey-sentinel
   driftDetection:
     mode: enabled
   interval: 15m
