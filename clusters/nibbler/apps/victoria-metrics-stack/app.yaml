@@ -7,9 +7,6 @@ metadata:
 spec:
   interval: 15m
   targetNamespace: monitoring
-  dependsOn:
-    - name: victoria-metrics-operator
-      namespace: flux-system
   sourceRef:
     kind: GitRepository
     name: flux-system

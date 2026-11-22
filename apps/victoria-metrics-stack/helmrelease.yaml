@@ -71,8 +71,6 @@ spec:
         k8sCollector:
           enabled: true
           excludeFilter: "kubernetes.pod_namespace:in(observability,kube-system)"
-    victoria-metrics-operator:
-      enabled: false
     kubeControllerManager:
       vmScrape:
         spec:
