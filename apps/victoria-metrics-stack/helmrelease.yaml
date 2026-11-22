@@ -89,3 +89,16 @@ spec:
             tlsConfig:
               insecureSkipVerify: true
               serverName: 127.0.0.1
+    prometheus-node-exporter:
+      vmScrape:
+        spec:
+          endpoints:
+            - port: metrics
+              relabelConfigs:
+                - action: replace
+                  sourceLabels: [__meta_kubernetes_pod_node_name]
+                  targetLabel: instance
+              metricRelabelConfigs:
+                - action: drop
+                  source_labels: [mountpoint]
+                  regex: "/var/lib/kubelet/pods.+"
