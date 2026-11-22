@@ -9,7 +9,7 @@ spec:
   targetNamespace: logging
   dependsOn:
     - name: victoria-metrics-operator
-      namespace: flux-system
+      namespace: victoria-metrics-system
   sourceRef:
     kind: GitRepository
     name: flux-system
