@@ -42,6 +42,13 @@ spec:
           enabled: false
         prometheus-remote-write:
           enabled: false
+      sources:
+        victoriametrics-operator:
+          enabled: true
+        victorialogs-single-node:
+          enabled: true
+        victorialogs-vlagent:
+          enabled: true
     grafana:
       sidecar:
         dashboards:
