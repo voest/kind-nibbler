@@ -20,6 +20,28 @@ spec:
     fullnameOverride: "vmstack"
     alertmanager:
       enabled: false
+    defaultDashboards:
+      dashboards:
+        k8s-resources-multicluster:
+          enabled: false
+        k8s-resources-windows-cluster:
+          enabled: false
+        k8s-resources-windows-namespace:
+          enabled: false
+        k8s-resources-windows-pod:
+          enabled: false
+        k8s-windows-cluster-rsrc-use:
+          enabled: false
+        k8s-windows-node-rsrc-use:
+          enabled: false
+        nodes-aix:
+          enabled: false
+        nodes-darwin:
+          enabled: false
+        prometheus:
+          enabled: false
+        prometheus-remote-write:
+          enabled: false
     grafana:
       sidecar:
         dashboards:
