@@ -73,7 +73,7 @@ spec:
       spec:
         k8sCollector:
           enabled: true
-          excludeFilter: "kubernetes.pod_namespace:in(observability,kube-system)"
+          excludeFilter: "kubernetes.pod_namespace:in(kube-system)"
     kubeControllerManager:
       vmScrape:
         spec:
