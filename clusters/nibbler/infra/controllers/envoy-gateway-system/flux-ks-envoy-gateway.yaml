@@ -9,7 +9,7 @@ spec:
   targetNamespace: envoy-gateway-system
   dependsOn:
     - name: envoy-gateway-valkey-ratelimit
-      namespace: envoy-gateway-system
+      namespace: flux-system
   sourceRef:
     kind: GitRepository
     name: flux-system

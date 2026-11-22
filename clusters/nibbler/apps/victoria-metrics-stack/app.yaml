@@ -9,7 +9,7 @@ spec:
   targetNamespace: monitoring
   dependsOn:
     - name: victoria-metrics-operator
-      namespace: victoria-metrics-system
+      namespace: flux-system
   sourceRef:
     kind: GitRepository
     name: flux-system
