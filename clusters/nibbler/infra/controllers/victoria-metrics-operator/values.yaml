@@ -1,4 +1,3 @@
 ---
 serviceMonitor:
   enabled: true
-  vm: true
