@@ -1,3 +1,5 @@
 ---
+crds:
+  plain: true
 serviceMonitor:
   enabled: true
